@@ -17,22 +17,22 @@ ACCOUNT_ACTIVATION_DAYS=7
 #EMAIL_HOST_PASSWORD = 'Ao+ckP4XhVykZjsJZGVV1xXyfu39MEcjG90RWlOjRUp1'
 #EMAIL_USE_TLS = True
 
-DEFAULT_FROM_EMAIL = 'admin@thekindnesspledge.org'
+DEFAULT_FROM_EMAIL = 'xxxxrg'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'admin@thekindnesspledge.org'
-EMAIL_HOST_PASSWORD = 'Zelunjo1'
+EMAIL_HOST_USER = 'xxxx.org'
+EMAIL_HOST_PASSWORD = 'xxxx'
 EMAIL_SUBJECT_PREFIX = 'The Kindness Pledge'
 EMAIL_USE_TLS = True 
 #EMAIL_PORT = "465"  #this line may not be required.
 EMAIL_PORT = 587 
 
-FACEBOOK_APP_ID = '577325912283123'
-FACEBOOK_SECRET_KEY = '2a8f012939288e9ffdea1dc353312e6a'
+FACEBOOK_APP_ID = 'xxxx'
+FACEBOOK_SECRET_KEY = 'xxxx'
 FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 #FACEBOOK_REQUEST_PERMISSIONS = 'email'
 
-TWITTER_CONSUMER_KEY = 'J8UTsAIoGDlLHfKKy89rg'
-TWITTER_CONSUMER_SECRET = 'yep4Rl9NEQsTjCKGjxfA6YE31JnMgxQIXTa1K3nYs' 
+TWITTER_CONSUMER_KEY = 'xxxx'
+TWITTER_CONSUMER_SECRET = 'xxxx' 
 
 SOCIAL_AUTH_SESSION_EXPIRATION = False
 
@@ -51,8 +51,8 @@ DATABASES = {
         'NAME': 'djangostack',
         'HOST': '/opt/bitnami/postgresql',
         'PORT': '5432',
-        'USER': 'bitnami',
-        'PASSWORD': '8c4c58e151'
+        'USER': 'xxxx',
+        'PASSWORD': 'xxxx'
     }
 }
 
@@ -133,7 +133,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '(t)ntr6@k3jp6j-6i6hcl=g*q#9=)yx*83yq2#t1d+-i58%e14'
+SECRET_KEY = 'xxxx@k3jp6j-6i6hcl=g*q#9=)yx*83yq2#t1d+-i58%e14'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
