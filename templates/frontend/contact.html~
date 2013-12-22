@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+    <!-- features -->
+    <div id="contact" class="contact_page">
+        <div class="container">
+            <!-- header -->
+            <h2 class="section_header">
+                <hr class="left visible-desktop">
+                <span>Contact Us</span>
+                <hr class="right visible-desktop">
+            </h2>
+
+	    {% if messages %}
+	    {% for message in messages %}
+	    <div class="alert alert-success">
+	      {{ message }}
+	    </div>
+	    {% endfor %}
+	    {% endif %}
+	    {% if errors %}
+            {% for error in errors %}
+            <div class="alert alert-success">
+	      {{ error }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            <div class="row form">
+                <div class="span6">
+                    <form class="form-horizontal" action="" method="GET">
+                        <div class="control-group">
+                                <label class="control-label" for="inputName">Name</label>
+                                <div class="controls">
+                                    <input type="text" class="span4" id="inputName" name="name">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">Email</label>
+                                <div class="controls">
+                                    <input type="text" class="span4" name="email" id="inputEmail">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputComment">Message</label>
+                                <div class="controls">
+				  <textarea class="span4" name="message" id="inputComment" rows="6"></textarea>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls action">
+                                    <button type="submit" class="btn">Send</button>
+                                </div>
+                            </div>
+                        </form>
+                </div>
+                <div class="span5 offset1">
+                    <div class="address">
+                        <h3>Address</h3>
+                        <p>
+                            Tikue Anazodo <br> 
+			    1428 Lerner Hall <br>  
+			    2920 Broadway <br> 
+			    NY 10027 <br> 
+                            Unites States
+                        </p>
+                        <div class="info">
+                            <i class="contact email"></i>
+                            admin@thekindnesspledge.org
+                        </div>
+                        <hr>
+                        <h3>Social media</h3>
+                        <div class="social">
+                          <a href="https://www.facebook.com/TheKindnessPledge"><i class="social tw"></i></a>
+                          <a href="https://twitter.com/KindnessPledge"><i class="social fb"></i></a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %} 

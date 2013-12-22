@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Quotes{% endblock %}
+
+{% block content %}
+<div id="blog_wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span8">
+        <h1 class="header">
+          Quotes
+          <hr>
+        </h1>
+	<p align="center">
+	  <a href="/add-quote" class="btn btn-primary default">Add Quote</a>
+	</p>
+	{% for quote in quotes %}
+        <div class="post">
+          <div class="row">
+            <div class="span8" align="center">
+              <p>
+		{{ quote.quote }}
+	      </p>
+              <div class="post_info">
+                <div class="author">
+                  - {{ quote.author }}
+                </div><br>
+                <div class="date">
+                  posted on {{ quote.timestamp }} by <a href="/profile/{{ quote.creator }}">{{ quote.creator }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+	{% endfor %}
+        <div class="pagination">
+          <ul>
+            <li><a href="#">Prev</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">Next</a></li>
+          </ul>
+        </div>
+      </div>
+      {% ssi /home/bitnami/apps/django/django_projects/Project/templates/frontend/sidebar.html parsed  %}
+    </div>
+  </div>
+</div>
+{% endblock %} 

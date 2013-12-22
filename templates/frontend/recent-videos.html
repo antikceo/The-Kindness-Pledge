@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Recent Videos {% endblock %}
+
+{% block content %}
+
+<div id="blog_wrapper">
+  <div class="container">
+    <div class="row">
+      <h1 class="header">
+        <hr>
+      </h1>
+      <div class = "span8">
+	<div class="tabbable tabs-below">
+	  <ul class="nav nav-tabs">
+	    <li class="active"><a data-toggle="tab" href="#A">recent videos</a></li>
+	  </ul>
+	  <div class="tab-content">
+            <div id="A" class="tab-pane active">
+              {% if user_vids  %}
+              <p>
+		{% for vid in user_vids %}
+                <div class="post">
+                  <div class="row">
+                    <div class="span4 info">
+                      <a href="/campaign/{{vid.campaign.id}}/video-post/{{vid.id}}"><h3>{{ vid.title }}</h3></a>
+		      
+		      <p>
+			<iframe class="youtube-player" type="text/html" width="400" height="300" src="{{ vid.content  }}">
+			</iframe>
+                      </p>
+                      <div class="post_info">
+                        <div class="date">
+                          {{ vid.caption }}
+                        </div>
+                        <div class="author">
+                          Response posted by <a href="/profile/{{ vid.creator }}"><i>{{ vid.creator }}</i></a> on <i>{{ vid.timestamp }}</i>
+                        </div>
+                      </div>
+                    </div>
+		    <br>
+		    <div class="spancomments">
+		      <div class="fb-comments" data-href="http://www.thekindnesspledge.org/campaign/{{ vid.campaign.id }}/video-post/{{ vid.id }}" data-width="250" data-num-posts="4"></div>
+		    </div>
+
+                    <div class="span8" align="bottom">
+		      <br>
+		      <div class="fb-like" data-href="http://www.thekindnesspledge.org/campaign/{{ vid.campaign.id }}/video-post/{{ vid.id }}" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false" data-font="lucida grande"></div>&nbsp;&nbsp;
+		      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.thekindnesspledge.org/campaign/{{ vid.campaign.id }}/video-post/{{ vid.id }}" data-counturl="http://www.thekindnesspledge.org/campaign/{{ vid.campaign.id }}/video-post/{{ vid.id }}" data-lang="en" data-count="vertical">Tweet</a>
+		      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                    </div>
+                  </div>
+                </div>
+		{% endfor %}
+              </p>
+	      <p align="right">
+		<span class="current">
+		  Page {{ user_vids.number }} of {{ user_vids.paginator.num_pages }}.
+		</span>
+	      </p>
+	      <div class="pagination">
+		<ul>
+		  {% if user_vids.has_previous %}
+		  <li><a href="?page={{ user_vids.previous_page_number }}">Prev</a></li>
+		  {% endif %}
+		  {% for this in them %}
+		  <li><a href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+		  {% endfor %}
+		  {% if campaigns.has_next %}
+		  <li><a href="?page={{ user_vids.next_page_number }}">Next</a></li>
+		  {% endif %}
+		</ul>
+	      </div>
+	      {% endif %}
+            </div>
+          </div>
+	</div>
+      </div>
+      
+      {% ssi /home/bitnami/apps/django/django_projects/Project/templates/frontend/sidebar.html parsed  %}
+
+    </div>
+  </div>
+</div>
+  
+{% endblock %} 

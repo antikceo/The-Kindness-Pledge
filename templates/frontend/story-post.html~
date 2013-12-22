@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ campaign_post.title }}{% endblock %}
+
+{% block content %}
+
+<div id="blog_wrapper">
+  <div class="container">
+    <div class="row">
+      <h1 class="header">
+        {{ campaign_post.title }} <hr>
+      </h1>
+      <div class = "span8">
+	<div class="tabbable tabs-below">
+	  <ul class="nav nav-tabs">
+	    <li class="active"><a data-toggle="tab" href="#A">Video Responses</a></li>
+	  </ul>
+	  <div class="tab-content">
+            <div id="A" class="tab-pane active">
+              {% if campaign_post  %}
+              <p>
+                <div class="post">
+                  <div class="row">
+                    <div class="span4 info">
+                      <h3>{{ campaign_post.title }}</h3>
+                      <p>
+			<a href="/media/{{ campaign_post.content }}">
+			  <img src="/media/{{ campaign_post.content }}" alt="main pic" class="main_pic">
+			</a>
+		      </p>
+                      <div class="post_info">
+                        <div class="date">
+                          {{ campaign_post.caption }}
+                        </div>
+                        <div class="author">
+                          Response posted by <a href="/profile/{{ campaign_post.creator }}"><i>{{ campaign_post.creator }}</i></a> on <i>{{ campaign_post.timestamp }}</i>
+                        </div>
+                      </div>
+                    </div>
+		    <br>
+		    <div class="spancomments">
+		      <div class="fb-comments" data-href="http://www.thekindnesspledge.org/campaign/{{ campaign_id }}/text-post/{{ campaign_post.id }}" data-width="250" data-num-posts="4"></div>
+		    </div>
+
+                    <div class="span8" align="bottom">
+		      <br>
+		      <div class="fb-like" data-href="http://www.thekindnesspledge.org/campaign/{{ campaign_id }}/text-post/{{ campaign_post.id }}" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false" data-font="lucida grande"></div>&nbsp;&nbsp;
+		      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.thekindnesspledge.org/campaign/{{ campaign_id }}/image-post/{{ campaign_post.id }}" data-counturl="http://www.thekindnesspledge.org/campaign/{{ campaign_id }}/image-post/{{ campaign_post.id }}" data-lang="en" data-count="vertical">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+                    </div>
+                  </div>
+                </div>
+              </p>
+              {% endif %}
+            </div>
+          </div>
+	</div>
+      </div>
+      
+      {% ssi /home/bitnami/apps/django/django_projects/Project/templates/frontend/sidebar.html parsed  %}
+
+    </div>
+  </div>
+</div>
+  
+{% endblock %} 

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Add Campaign{% endblock %}
+
+{% block content %}
+<div id="blog_wrapper">
+  <div class="container">
+    <div class="row">
+      <h1 class="header">
+        Create Campaign
+      </h1>
+      <div class = "span8">
+
+      </div>
+      
+      <div class="span3 sidebar offset1">  
+	<input type="text" placeholder="Search" class="input-large search-query">
+	<h4 class="sidebar_header">
+	  Menu
+	</h4>
+	<ul class="sidebar_menu">
+	  <li><a href="#">Suspendisse Semper Ipsum</a></li>
+	  <li><a href="#">Maecenas Euismod Elit</a></li>
+	  <li><a href="#">Suspendisse Semper Ipsum</a></li>
+	  <li><a href="#">Maecenas Euismod Elit</a></li>
+	  <li><a href="#">Suspendisse Semper Ipsum</a></li>
+	</ul>
+	<h4 class="sidebar_header">
+	  Recent posts
+	</h4>
+	<ul class="recent_posts">
+	  <li>
+	    <div class="row">
+              <div class="span1">
+		<a href="blog-post.html">
+		  <img src="/static/frontend-bootstrap/bootstrap/img/pic_blog.png" alt="thumb post" class="thumb">
+		</a>
+              </div>
+              <div class="span2">
+		<a href="blog-post.html" class="link">Maecenas Euismod Elit</a>
+              </div>
+	    </div>
+	  </li>
+	  <li>
+	    <div class="row">
+              <div class="span1">
+		<a href="blog-post.html">
+		  <img src="/static/frontend-bootstrap/bootstrap/img/pic_blog.png" alt="thumb post" class="thumb">
+		</a>
+              </div>
+              <div class="span2">
+		<a href="blog-post.html" class="link">Suspendisse Semper Ipsum</a>
+              </div>
+	    </div>
+	  </li>
+	</ul>
+      </div>
+    </div>
+  </div>
+</div>
+  
+{% endblock %} 

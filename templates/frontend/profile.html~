@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ user.username }}'s profile{% endblock %}
+
+{% block content %}
+<div id="blog_wrapper">
+  <div class="container">
+    <div class="row">
+      <h1 class="header">
+        {{ user.username }}'s profile <hr>
+      </h1>
+      <div class = "span8">
+        <div class="row cols4">
+          <div class="span9">
+	    <div class="span7">
+	      <div class="thumbnail">
+		<table class="table table-striped">
+		  <thead>
+		    <tr><th>
+			Account Information
+		    </th></tr>
+		  </thead><tbody>
+		    <tr><td>
+			<b><i>username:</i></b> {{ user.username }}
+		    </td></tr>
+		    <tr><td>
+			<b><i>member since:</i></b> {{ user.date_joined }}
+		    </td></tr>
+		    {% if is_owner %}
+                    <tr><td>
+                        <a href="/accounts/password/change/" class="btn btn-primary default">change password</a>
+                    </td></tr>
+		    {% endif %}
+		</tbody></table>
+              </div>
+            </div>
+            <div class="span7">
+              <div class="thumbnail">
+                <table class="table table-striped">
+                  <thead>
+                    <tr><th>
+			Campaigns Pledged
+                    </th></tr>
+		  </thead>
+		  <tbody>
+		    {% if pledged %}
+		    {% for pledge in pledged %}
+                    <tr><td>
+                        <a href="/campaign/{{ pledge.campaign.id }}">{{ pledge.campaign.name }}</a>
+                    </td></tr>
+		    {% endfor %}
+                    <tr><td>
+                    <p align="center">
+                      <a href="campaigns-pledged" class="btn btn-primary default">View All</a>
+                    </p>
+                    </tr></td>
+		    {% else %}
+                    <tr><td>
+			{% if is_owner %}
+			<p align="center">you have not pledged any campaigns <a href="/campaigns" class="btn btn-primary default">go to campaigns page</a></p>
+			{% else %}
+			<p> {{user.username}} has not pledged any campaigns</p>
+			{% endif %}
+                    </td></tr>
+		    {% endif %}
+                </tbody>
+		</table>
+              </div>
+            </div>
+            <div class="span7">
+              <div class="thumbnail">
+                <table class="table table-striped">
+                  <thead>
+                    <tr><th>
+                        Campaigns Created
+                    </th></tr>
+                  </thead>
+                  <tbody>
+                    {% if campaigns %}
+                    {% for pledge in campaigns %}
+                    <tr><td>
+                        <a href="/campaign/{{ pledge.id }}">{{ pledge.name }}</a>
+                    </td></tr>
+                    {% endfor %}
+                    <tr><td>
+                    <p align="center">
+                      <a href="campaigns-created" class="btn btn-primary default">View All</a>
+                    </p>
+                    </tr></td>
+                    {% else %}
+                    <tr><td>
+                        {% if is_owner %}
+                        <p align="center">you have not created any campaigns <a href="/create-campaign" class="btn btn-primary default">create a campaign</a></p>
+                        {% else %}
+                        <p> {{user.username}} has not created any campaigns</p>
+                        {% endif %}
+                    </td></tr>
+                    {% endif %}
+                </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="span7">
+              <div class="thumbnail">
+                <table class="table table-striped">
+                  <thead>
+                    <tr><th>
+                        {{user.username}}'s video responses
+                    </th></tr>
+                  </thead>
+		  <tbody>
+		    {% if videos %}
+		    {% for video in videos %}
+                    <tr><td>
+			<a href="/campaign/{{ video.campaign.id }}/video-post/{{ video.id }}">{{ video.title }}</a>
+		    </td></tr>
+		    {% endfor %}
+		    <tr><td>
+                    <p align="center">
+                      <a href="videos" class="btn btn-primary default">View All</a>
+                    </p>
+		    </tr></td>
+		    {% else %}
+		    <tr><td>
+			<p> {{user.username}} has no video responses</p> 
+		    </td></tr>
+		    {% endif %}
+                </tbody>
+		</table>
+              </div>
+            </div>
+            <div class="span7">
+              <div class="thumbnail">
+                <table class="table table-striped">
+                  <thead>
+                    <tr><th>
+			{{user.username}}'s image responses
+                    </th></tr>
+                  </thead><tbody>
+                    {% if images %}
+                    {% for image in images %}
+                    <tr><td>
+			<a href="/campaign/{{ image.campaign.id }}/image-post/{{ image.id }}">{{ image.title }}</a>
+                    </td></tr>
+                    {% endfor %}
+		    <tr><td>
+                    <p align="center">
+                      <a href="images" class="btn btn-primary default">View All</a>
+                    </p>
+		    </tr></td>
+		    {% else %}
+                    <tr><td>
+                        <p> {{user.username}} has no image responses</p>
+                    </td></tr>
+                    {% endif %}
+                </tbody></table>
+              </div>
+            </div>
+            <div class="span7">
+              <div class="thumbnail">
+                <table class="table table-striped">
+                  <thead>
+                    <tr><th>
+                        {{user.username}}'s stories/external links 
+                    </th></tr>
+                  </thead>
+		  <tbody>
+                    {% if stories %}
+                    {% for story in stories %}
+                    <tr><td>
+			<a href="/campaign/{{ story.campaign.id }}/text-post/{{ story.id }}">{{ story.title }}</a>
+                    </td></tr>
+                    {% endfor %}
+		    <tr><td>
+                    <p align="center">
+                      <a href="stories" class="btn btn-primary default">View All</a>
+                    </p>
+		    </tr></td>
+                    {% else %}
+                    <tr><td>
+                        <p> {{user.username}} has not posted any story responses or exernal links</p>
+                    </td></tr>
+                    {% endif %}
+                  </tbody>
+		</table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% ssi /home/bitnami/apps/django/django_projects/Project/templates/frontend/sidebar.html parsed  %}
+    </div>
+  </div>
+</div>
+{% endblock %}

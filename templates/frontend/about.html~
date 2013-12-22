@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+    <!-- features -->
+    <div id="about" class="about_page">
+        <div class="container">
+            <!-- header -->
+            <h2 class="section_header">
+                <hr class="left visible-desktop">
+                <span>About Us</span>
+                <hr class="right visible-desktop">
+            </h2>
+
+            <div class="row">
+                <div class="span12">
+                    <h3 class="intro">
+		      Changing the world, one kind deed at a time...
+                    </h3>
+                </div>
+            </div>
+
+            <!-- description -->
+            <div class="row">
+                <div class="span6">
+                    <p>
+For the most part, after the Sandy Hook shootings, the web was abuzz with political debates, debates about gun control, debates about mental health care system, debates about who was to blame (God, Obama, white males, I saw everything...). At some point a few hours after I initially heard about the shootings, I realized that as with most political debates of this nature, we could keep going back and forth with this finger pointing for the next century or so and still be no closer to effecting any positive change. I was actually on the verge of shutting myself off from the internet for the day when I stumbled upon Buzzfeed’s aptly named “26 moments that restored our faith in humanity this year”. Buzzfeed had taken an approach to the problem that I had not seen anyone else take all of that day, they had sourced pictures of random acts of kindness from around the web and chunked them all into one page. This article probably had less than 100 words in it, but it was by far the most sensible thing that I had seen all of that day. I have been never quite the emotional one, but by the time I got to the 21st bullet about the story behind Caine’s arcade and how members of a small town took it upon themselves to make the boy’s day, the imaginary ninjas who cut onions around people’s eyes were vigorously dicing onions around my eyes. At some point I decided to take a quick walk around Morningside Heights to perform as many random acts of kindness as I could in 1 hour (I was in the middle of final season so I couldn’t afford much more time), I couldn’t rationalize it but I knew that going out and making a few random people happy without expecting anything in return would be much more productive than any armchair activism that I would otherwise be engaging in via the social web.
+<br><br>
+When I got back from my walk, an extremely rewarding walk it was, I started thinking about the potential of a random act of kindness. To me it was just a random act of kindness, but to the recipient it could be much more than that, and in reality because of the manner in which most people paid acts of kindness that they received forward, one act of kindness performed in New York City could potentially potentially positively impact the life of a suicidal teenager in Alaska, that one random act of kindness could be the chief dissuading factor that restores a potential mass murderer’s faith in the world enough to dissuade such an individual from taking up arms and raining out anger on the world in the form of bullets. A single act of kindness would have saved lives.
+<br><br>
+The nerd in me kicked in and I started beating back a forth in my head on the potential of this concept, which for lack of a better term I will call ‘crowdkindness’. Essentially the idea was really simple, over the last 7 years or so, the power and influence of the crowd on the web has manifested itself more and more, so much so that as members of a connected crowd on the web, we are essentially disrupting the traditional notion of the way the world works as a whole. We have seen crowdfunding platforms disrupt the traditional venture capital system so much so that great ideas are raising millions on Kickstarter from a combination of tiny donations, we have seen Wikipedia disrupt the physical encyclopedia and eventually grow into the largest information hub in the world through the effort of little contributions by individual members of a crowd on the web, even in the developer community we have seen how the concept of open source software fundamentally disrupted the software industry at it’s core. As individual members of a crowd on the web we are much more influential than ever before. Whenever anything negative occurs, society’s default reaction is usually to point fingers around, but as most of us have come to realize, finger pointing while important in many scenarios, often leads to too much talk and no action. I believe that we can also disrupt the mindset that the only people responsible for effecting positive change in society are the governing bodies and the high and mighty individuals and organizations.
+                    </p>
+                </div>
+                <div class="span6">
+                    <p>
+ At the core of this ‘crowdkindness’, I created the concept of a campaign where a campaign could be anything we a group of people (doers), mobilize via the web can contribute to by taking individual/group action from wherever they may be. A campaign could be titled ‘stand up against bullying’, ‘make a terminally sick person’s day’, ‘feed a homeless person’ etc. the possibilities are endless. A campaign could also be a more specific call to action following an event, such as a call to people in a specific region to help alleviate the effects of a recent natural disaster, each in his/her own individual way. An individual can pledge a campaign, where a pledge is really just a personal commitment to do whatever is at the core of a specific campaign. To keep the spirit of a campaign alive, people can post responses to campaigns, where a response could be a video, a powerful image, a story or an external link. For instance if one campaign was titled ‘Stand up against bullying’, a sample response could be a moving story posted by a teenager talking about the negative impact of bullying on his high-school life, or a video showing a heroic high school teen standing up for a young girl being picked on because she has downs syndrome. I decided to hammer through this concept during my finals and to eventually start building out this service once I was done with my finals.
+<br><br>
+When I was done with finals I got wind of the ‘26 Acts of Kindness’ movement that Ann Curry had started via Twitter, the idea was that everyone should perform 26 random acts of kindness, 1 for every soul that was lost in Sandy Hook elementary on that sad day. The response so far had been overwhelming, the speed at which it spread was crazy. This was a great proof of concept for me, the #26acts movement helped me better refine my concept of a campaign. The beautiful stories, videos and pictures that people around the web were generating were perfect examples of campaign responses. I went through someting about 15 potential names for the platform, all of which did not have available domain names. At some point Warren Buffett’s similarly named ‘The Giving Pledge’ popped into my head, but where the ‘The Giving Pledge’ was an initiative for generous billionaires around the world to make the concept of giving popular among billionaires, ‘The Kindness Pledge’ would harness the power and influence of an initial crowd of kind people, and in the same way the members of ‘The Giving Pledge’ were convincing other billionaires to be more generous and solve world problems with their vast wealth, we would convince other people to be kinder and to solve world problems with kindness. There are only something about 1000 people worldwide who can sign ‘The Giving Pledge’, on the other hand kindness requires no commitment, in fact I think we are all ‘wired’ 100% kind at birth, and as such anyone who breathes can play a role in ‘The Kindness Pledge’. It is very essential to understand  that as individual members of a crowd of doers pushing for positive change, we are greater catalysts for change than any law. This is not a call to stop lobbying for legislation that we are passionate about, it is simply a call to realize that we have a bigger individual role to play in effecting positive change than many of us realize.
+<br><br>
+I dedicate this platform to the 26 victims of the Sandy Hook Elementary school shooting, may their souls rest in peace.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} 

@@ -1,0 +1,153 @@
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}Untitled{% endblock %} | The Kindness Pledge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block meta %}
+  {% endblock %}
+  <script type="text/javascript">
+    
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37514449-1']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+
+  <!-- Bootstrap -->
+    <link href="{% static "frontend-bootstrap/bootstrap/css/bootstrap.css" %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static "frontend-bootstrap/bootstrap/css/theme.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "frontend-bootstrap/bootstrap/css/animate.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "frontend-bootstrap/bootstrap/css/blog.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "frontend-bootstrap/bootstrap/css/external-pages.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "frontend-bootstrap/bootstrap/css/reset.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "frontend-bootstrap/bootstrap/css/signup.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "frontend-bootstrap/bootstrap/css/signin.css" %}">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="{% static "frontend-bootstrap/bootstrap/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "frontend-bootstrap/bootstrap/js/theme.js" %}"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>                                                                                                                                                              
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>                                                                                                   
+    <![endif]-->
+  {% block jquery %}
+  {% endblock %}
+</head>
+<body>
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '577325912283123', // App ID from the App Dashboard
+      status     : true, // check the login status upon init?
+      cookie     : true, // set sessions cookies to allow your server to access the session?
+      xfbml      : true  // parse XFBML tags on this page?
+    });
+
+    // Additional initialization code such as adding Event Listeners goes here
+
+  };
+
+  // Load the SDK's source Asynchronously
+  // Note that the debug version is being actively developed and might 
+  // contain some type checks that are overly strict. 
+  // Please report such bugs using the bugs tool.
+  (function(d, debug){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document, /*debug*/ false));
+</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+    <a href="#" class="scrolltop">
+        <span>up</span>
+    </a>
+    <!-- begins navbar -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+	  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </a>
+	  {% block logo %}
+	  <a href="/" class="brand scroller" >
+	    <img src="{% static "frontend-bootstrap/bootstrap/img/logo.png" %}" alt="logo" />
+	  </a>
+	  {% endblock %}
+	  <div class="nav-collapse collapse">
+                <ul class="nav pull-right">
+		  {% block menu-items %}
+		  <li><a href="/campaigns">Campaigns</a></li>
+		  <li><a href="/about">About</a></li>
+		  <li><a href="/quotes">Quotes</a></li>
+		  <li><a href="/contact">Contact</a></li>
+		  {% endblock %}
+		  {% if is_logged %}
+		    <a class="btn btn-success" data-toggle="dropdown" href="#">
+		      Hello {{ username }}
+		      <span class="caret"></span>
+		    </a>
+		    <ul class="dropdown-menu">
+		      <li><a href="/profile/{{ username }}">Profile</a></li>
+		      <li><a href="/logout">Logout</a></li>
+		    </ul>
+		  {% else %}
+                  <li>
+                    <a class="btn-header" href="/accounts/register">Sign up</a>
+                  </li>
+                  <li><a class="btn-header" href="/accounts/login">Sign in</a></li>
+		  {% endif %}
+                </ul>
+	  </div>
+        </div>
+      </div>
+    </div>
+    <!-- ends navbar -->
+
+    {% block content %}
+
+     {% endblock %}
+
+    <!-- starts footer -->
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+
+            </div>
+            <hr>
+            <div class="row copyright">
+                <div class="span5">
+                    <h3>Social</h3>
+                    <a href="" class="social fb">
+                        <i class="i_facebook"></i>
+                    </a>
+                    <a href="#" class="social tw">
+                        <i class="i_twitter"></i>
+                    </a>
+                    <a href="#" class="social yt">
+                        <i class="i_youtube"></i>
+                    </a>
+                </div>
+                <div class="span2 offset5 copy">
+                    <p> &copy; &nbsp; The Kindness Pledge 2012 </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Post Campaign Suggestion{% endblock %}
+
+{% block content %}
+<div id="blog_wrapper">
+  <div class="container">
+    <div class="row">
+    {% if errors %}
+    <br/><br/>
+    {% for error in errors %}
+    <div class="alert alert-error">
+      <button data-dismiss="alert" class="close" type="button">×</button>
+      {{ error }}
+    </div>
+    {% endfor %}
+    {% endif %}
+      <h1 class="header">
+        Post Campaign Suggestion <hr>
+      </h1>
+      <div class = "span8">
+	<form action="" enctype="multipart/form-data" class="form-horizontal" method="post">
+	  {% csrf_token %}
+          <div class="control-group">
+            <label class="control-label"><b>Enter quote (in quotation marks): </b></label>
+            <div class="controls">
+              {{ form.quote }}
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label"><b>Who is this quote by? </b></label>
+            <div class="controls">
+              {{ form.author }}
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls action"><br>
+              <button class="btn btn-success default" type="submit">Post Quote</button>
+	      <br><p> Please ensure that all of the above are correct because all posts to this site are <b><i>final</i></b> </p>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      {% ssi /home/bitnami/apps/django/django_projects/Project/templates/frontend/sidebar.html parsed  %}
+      
+    </div>
+  </div>
+</div>
+  
+{% endblock %} 

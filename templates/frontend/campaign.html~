@@ -1,0 +1,328 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}{{ campaign.name  }}{% endblock %}
+{% block meta %}
+<meta name="description" content="{{ campaign.description  }}">
+{% endblock %}
+{% block content %}
+
+<div id="blog_wrapper">
+  <div class="container">
+    <div class="row">
+              {% if errors %}
+              <br/><br/>
+              {% for error in errors %}
+              <div class="alert alert-success">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                {{ error }}
+              </div>
+              {% endfor %}
+              {% endif %}
+      <h1 class="header">
+        {{ campaign.name  }} <hr>
+       </h1>
+      <div class = "span8">
+	<div class="post">
+          <div class="row">
+            <div class="span3">
+	      <div class="well">
+		<a href="/media/{{ campaign.image }}">
+                  <img src="/media/{{ campaign.image }}" alt="main pic" class="main_pic">
+		</a>
+		<hr>
+		<b>Created By: </b> <a href="/profile/{{ campaign.creator }}">{{ campaign.creator }}</a>
+		<hr>
+		<b>Date Created</b> : {{ campaign.timestamp }}
+		<hr>
+		{% if pledge_count %}
+		{{ pledge_count }} users pledged 
+		{% endif %}
+                <hr>
+		{% if is_pledged %}
+		<p>You pledged this campaign</p>
+		{% else %}
+		<form method="post" action=""  enctype="multipart/form-data">
+		  {% csrf_token %}
+		  <input  type="hidden" name="pledge_form" value="random">
+		  <p><button class="btn btn-primary" type="submit">Pledge this campaign </button></p> 
+		  <p>A pledge at it's simplest is a personal commitment</p>
+		</form>
+		{% endif %}
+	      </div>
+            </div>
+            <div class="span4 info">
+              <a href="blog-post.html">
+                <h3>{{ campaign.name  }}</h3>
+              </a>
+              <p> {{ campaign.description  }}</p>
+	      <p align="center">
+                <div class="fb-like" data-href="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false" data-font="lucida grande"></div>&nbsp;&nbsp;
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}" data-counturl="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}" data-lang="en" data-count="vertical">Tweet</a>
+	      </p>
+              <div class="post_info">
+                <div class="author">
+                </div>
+                <div class="date">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+	<p>You can respond to a campaign by posting any relevant material that you think would be encouraging to viewers of this campaign. This could be original content or content from around the web.You can also post suggestions for things you think people who are pledged to this campaign can do to help better acheive the goals of the campaign.</p>
+	<div class="tabbable tabs-below">
+	  <ul class="nav nav-tabs">
+	    <li class="active"><a data-toggle="tab" href="#A">Video Responses</a></li>
+	    <li class=""><a data-toggle="tab" href="#B">Photo Responses</a></li>
+	    <li><a data-toggle="tab" href="#C">Story Responses/External Links</a></li>
+	    <li><a data-toggle="tab" href="#D">Campaign Suggestions</a></li>
+	  </ul>
+	  <div class="tab-content">
+            <div id="A" class="tab-pane active">
+	      You can post relevant video responses to this campaign <a href="post-video" class="btn btn-success">post a video response</a>
+              {% if videos %}
+              <p>
+                {% for video in videos %}
+                <div class="post">
+                  <div class="row">
+                    <div class="span4 info">
+                      <a href="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}/video-post/{{ video.id }}">
+                        <h3>{{ video.title }}</h3>
+                      </a>
+                      <p>
+			<iframe class="youtube-player" type="text/html" width="400" height="300" src="{{ video.content  }}">
+			</iframe>
+                      </p>
+                      <div class="post_info">
+                        <div class="date">
+                          {{ video.caption }}
+                        </div>
+                        <div class="author">
+                          Response posted by <a href="/profile/{{ video.creator }}"><i>{{ video.creator }}</i></a> on <i>{{ video.timestamp }}</i>
+                        </div>
+                      </div>
+                    </div>
+		    <br>
+		    <div class="spancomments">
+		      <div class="fb-comments" data-href="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}/video-post/{{ video.id }}" data-width="250" data-num-posts="4"></div>
+		    </div>
+
+                    <div class="span8" align="bottom">
+		      <br>
+		      <div class="fb-like" data-href="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}/video-post/{{ video.id }}" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false" data-font="lucida grande"></div>&nbsp;&nbsp;
+		      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}/video-post/{{ video.id }}" data-counturl="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}/video-post/{{ video.id }}" data-lang="en" data-count="vertical">Tweet</a>
+ 
+
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </p>
+              {% endif %}
+            <p align="right">
+              <span class="current">
+                Page {{ videos.number }} of {{ videos.paginator.num_pages }}.
+              </span>
+	    </p>
+            <div class="pagination">
+              <ul>
+                {% if videos.has_previous %}
+                <li><a href="?video=video&page={{ videoss.previous_page_number }}">Prev</a></li>
+                {% endif %}
+		{% if them1 %}
+                {% for this in them1 %}
+                <li><a href="?video=video&page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+                {% endfor %}
+		{% endif %}
+                {% if videos.has_next %}
+                <li><a href="?video=video&page={{ videos.next_page_number }}">Next</a></li>
+                {% endif %}
+              </ul>
+            </div>
+            </div>
+            <div id="B" class="tab-pane">
+	       You can post relevant image responses to this campaign <a href="post-image" class="btn btn-success">post an image response</a>
+	      {% if images %}
+              <p>
+		{% for image in images %}
+                <div class="post">
+                  <div class="row">
+                    <div class="span4 info">
+                      <a href="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}/image-post/{{ image.id }}">
+                        <h3>{{ image.title }}</h3>
+                      </a>
+                      <p>
+                        <img src="/media/{{ image.content }}">
+                      </p>
+                      <div class="post_info">
+                        <div class="date">
+                          {{ image.caption }}
+                        </div>
+                        <div class="author">
+			  response posted by <a href="/profile/{{ image.creator }}"><i>{{ image.creator }}</i></a> on {{ image.timestamp }} 
+                        </div>
+                      </div>
+                    </div>
+                    <div class="spancomments">
+                      <div class="fb-comments" data-href="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}/image-post/{{ image.id }}" data-width="250" data-num-posts="4"></div>
+                    </div>
+
+                    <div class="span8" align="bottom">
+                      <br>
+		      <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.thekindnesspledge.org%2Fcampaign%2F{{ campaign.id }}%2Fimage-post%2F{{ image.id }}&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=true&amp;font=lucida+grande&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=577325912283123" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+                      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}/image-post/{{ image.id }}" data-counturl="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}/image-post/{{ image.id }}" data-lang="en" data-count="vertical">Tweet</a>
+                    </div>
+                  </div>
+                </div>
+		{% endfor %}
+              </p>
+	      {% endif %}
+	      {% if images %}
+	       <p align="right">
+		 <b>Please note that when you page through results the page is refreshed to the 'video responses' tab, just click on this tab to continue browsing</b>
+	       </p>
+               <p align="right">
+		 <span class="current">
+                   Page {{ images.number }} of {{ images.paginator.num_pages }}.
+		 </span>
+	       </p>
+	       {% endif %}
+	       <div class="pagination">
+		<ul>
+                  {% if images.has_previous %}
+                  <li><a href="?image=image&page={{ images.previous_page_number }}">Prev</a></li>
+                  {% endif %}
+                  {% if them2 %}
+                  {% for this in them2 %}
+                  <li><a href="?image=image&page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+                  {% endfor %}
+                  {% endif %}
+                  {% if images.has_next %}
+                  <li><a href="?image=image&page={{ images.next_page_number }}">Next</a></li>
+                {% endif %}
+		</ul>
+	      </div>
+            </div>
+            <div id="C" class="tab-pane">
+	      This could be a personal experience or stories you find around the web. You can also post external links. <a href="post-text" class="btn btn-success">post a story response/external link</a>
+              {% if stories %}
+              <p>
+                {% for story in stories %}
+                <div class="post">
+                  <div class="row">
+                    <div class="span4">
+                      <a href="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}/text-post/{{ story.id }}">
+                        <h3>{{ story.title }}</h3>
+                      </a>
+                      <p>
+                        {{ story.content }}
+                      </p>
+		      {% if story.link %}
+		      <p>
+			<a href="{{ story.link }}">{{ story.link }}</a>
+		      </p>
+		      {% endif %}
+                      <div class="post_info">
+                        <div class="author">
+                          response posted by <a href="/profile/{{ story.creator }}">{{ story.creator }}</a> on {{ story.timestamp }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="spancomments">
+                      <div class="fb-comments" data-href="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}/text-post/{{ story.id }}" data-width="250" data-num-posts="4"></div>
+                    </div>
+		    
+                    <div class="span8" align="bottom">
+                      <br>
+                      <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.thekindnesspledge.org%2Fcampaign%2F{{ campaign.id }}%2F/text-post%2F{{ story.id }}&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=true&amp;font=lucida+grande&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=577325912283123" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+                      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}/text-post/{{ story.id }}" data-counturl="http://www.thekindnesspledge.org/campaign/{{ campaign.id }}/text-post/{{ story.id }}" data-lang="en" data-count="vertical">Tweet</a>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </p>
+              {% endif %}
+	      {% if stories %}
+               <p align="right">
+                 <b>Please note that when you page through results the page is refreshed to the 'video responses' tab, just click on this tab to continue browsing</b>
+               </p>
+               <p align="right">
+                 <span class="current">
+                   Page {{ stories.number }} of {{ stories.paginator.num_pages }}.
+                 </span>
+               </p>
+	       {% endif %}
+              <div class="pagination">
+                <ul>
+                  {% if stories.has_previous %}
+                  <li><a href="?story=story&page={{ stories.previous_page_number }}">Prev</a></li>
+                  {% endif %}
+                  {% if them3 %}
+                  {% for this in them3 %}
+                  <li><a href="?story=story&page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+                  {% endfor %}
+                  {% endif %}
+                  {% if stories.has_next %}
+                  <li><a href="?story=story&page={{ stories.next_page_number }}">Next</a></li>
+                {% endif %}
+		  </ul>
+              </div>
+            </div>
+            <div id="D" class="tab-pane">
+              <p>
+		You can post suggestions for things you think people pledge to this campaign can do or post in order to better acheive the goals of this campaign. <a href="post-suggestion" class="btn btn-success"> post a suggestion </a>
+		{% if suggestions %}
+		{% for suggestion in suggestions %}
+		<div class="post">
+		  <div class="row">
+		    <div class="span8" align="center">
+		      <p>
+			{{ suggestion.suggestion }}
+		      </p>
+		      <div class="post_info">
+			<div class="date">
+			  posted on {{ suggestion.timestamp }} by <a href="/profile/{{ suggestion.creator }}">{{ suggestion.creator }}</a>
+			</div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		{% endfor %}
+		{% endif %}
+              </p>
+	      {% if suggestions %}
+               <p align="right">
+                 <b>Please note that when you page through results the page is refreshed to the 'video responses' tab, just click on this tab to continue browsing</b>
+               </p>
+               <p align="right">
+                 <span class="current">
+                   Page {{ suggestions.number }} of {{ suggestions.paginator.num_pages }}.
+                 </span>
+               </p>
+	       {% endif %}
+              <div class="pagination">
+                <ul>
+                  {% if suggestions.has_previous %}
+                  <li><a href="?suggestion=suggestion&page={{ suggestions.previous_page_number }}">Prev</a></li>
+                  {% endif %}
+                  {% if them4 %}
+                  {% for this in them4 %}
+                  <li><a href="?suggestion=suggestion&page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+                  {% endfor %}
+                  {% endif %}
+                  {% if suggestions.has_next %}
+                  <li><a href="?suggestion=suggestion&page={{ suggestions.next_page_number }}">Next</a></li>
+                {% endif %}
+		  </ul>
+              </div>
+            </div>
+          </div>
+	</div>
+      </div>
+      
+      {% ssi /home/bitnami/apps/django/django_projects/Project/templates/frontend/sidebar.html parsed  %}
+
+    </div>
+  </div>
+</div>
+  
+{% endblock %} 

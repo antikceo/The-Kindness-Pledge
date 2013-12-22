@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Add Campaign{% endblock %}
+
+{% block content %}
+<div id="blog_wrapper">
+  <div class="container">
+    <div class="row">
+    {% if errors %}
+    <br/><br/>
+    {% for error in errors %}
+    <div class="alert alert-error">
+      <button data-dismiss="alert" class="close" type="button">×</button>
+      {{ error }}
+    </div>
+    {% endfor %}
+    {% endif %}
+      <h1 class="header">
+        Create Campaign <hr>
+      </h1>
+      <div class = "span8">
+	<form action="" enctype="multipart/form-data" class="form-horizontal" method="post">
+	  {% csrf_token %}
+          <div class="control-group">
+            <label class="control-label">Name</label>
+            <div class="controls">
+              {{ form.name }}
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Image</label>
+            <div class="controls">
+	      {{ form.image }}
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Description</label>
+            <div class="controls">
+	      {{ form.description }}
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Post As</label>
+            <div class="controls">
+              {{ form.creator }}
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls action">
+              <button class="btn btn-success default" type="submit">Create Campaign</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      {% ssi /home/bitnami/apps/django/django_projects/Project/templates/frontend/sidebar.html parsed  %}
+
+    </div>
+  </div>
+</div>
+  
+{% endblock %} 

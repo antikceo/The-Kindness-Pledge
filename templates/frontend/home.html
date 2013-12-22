@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block meta %}
+<meta name="description" content="Leveraging the power of the crowd to change the world, one kind deed at a time">
+{% endblock %}
+
+{% block title %}Home {% endblock %}
+
+
+{% block logo %} 
+<a class="brand scroller" data-section="body" href="#">
+    <img src="{% static "frontend-bootstrap/bootstrap/img/logo.png" %}" alt="logo" />
+    
+</a>
+{% endblock %}
+
+{% block menu-items %}
+<li><a href="#" class="scroller" data-section="#pricing">Campaigns</a></li>
+<li><a href="/about" >About</a></li>
+<li><a href="/quotes" >Quotes</a></li>
+<li><a href="/contact">Contact</a></li>
+{% endblock  %}
+
+{% block content %}
+<!-- starts hero -->
+    <div id="hero">
+        <div class="container">
+            <!-- starts carousel -->
+            <div class="row animated fadeInDown">
+                <div class="span12">
+                    <div id="myCarousel" class="carousel slide">
+                        <!-- carousel items -->
+                        <div class="carousel-inner">
+                            <!-- slide -->
+                            <div class="active item slide1">
+                                <div class="row">
+                                    <div class="span6">
+                                        <img  src="{% static "frontend-bootstrap/bootstrap/img/kindness.jpg" %}" alt="slide1" />
+                                    </div>
+                                    <div class="span5">
+                                        <h1>Changing the world, one kind deed at a time...</h1>
+                                        <p>
+                                            The core philosophy behind The Kindness Pledge is that as individual members of a crowd of 'doers' connected by the web we can effect positive change in society much more quickly and efficiently than any law or governing body. We created a fun, non-profit platform to create and track kindness campaigns similar to the #26acts movement started by Ann Curry. This is essentially 'crowdkindness' at its finest. 
+                                        </p>
+                                        <a href="/accounts/login" class="btn btn-primary btn-large">
+                                            Join The Kindness Pledge!
+                                        </a>
+					<a href="/about" class="btn btn-success btn-large">
+                                            Learn More
+                                        </a>
+					<br><br><br>&nbsp;
+					<div class="fb-like" data-href="http://www.thekindnesspledge.org" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="lucida grande">
+					</div>&nbsp;&nbsp;&nbsp;
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://thekindnesspledge.org" data-counturl="http://thekindnesspledge.org" data-lang="en" data-count="vertical">Tweet</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="intro">
+        <div class="container">
+          <h1><b>Kindness quote of the week</b> </h1></br>
+	  {% if quote %}
+          <h3>{{ quote.quote }} ― {{ quote.author }} </h3></br>
+	  {% endif %}
+          <a href="/quotes" class="btn btn-success btn-large">
+            See More Quotes on Kindness
+          </a>
+        </div>
+    </div>
+
+    <!-- starts pricing -->
+    <div id="pricing">
+        <div class="container">
+            <!-- header -->
+            <h2 class="section_header">
+                <hr class="left visible-desktop">
+                <span>
+                    Campaigns
+                </span>
+                <hr class="right visible-desktop">
+            </h2>
+
+            <!-- pricing charts -->
+            <div class="well well-small">
+              <h4>
+		At this platform's core is the concept of a campaign, which is essentially a call to action. A sample campaign could be titled ‘stand up against bullying’, ‘make a terminally sick child’s day’, ‘feed a homeless person’, 'help victims of hurricane X' etc. A campaign could also be something a simple as a call to be more courteous in traffic. It is up to users to keep a campaign active by posting responses in the form of videos, images, stories and links. When you pledge a campaign you make a personal commitment to do whatever is at the core of said campaign. Our inaugural campaign is the '26 Acts of Kindness' campaign that NBC's Ann Curry launched via Twitter a month ago in honor of the 26 lives that were lost in Sandy Hook Elementary School on December 14th 2012.   
+	      </h4>
+              <p align="center">
+                <a class="btn btn-success btn-large" href="/campaigns">View all campaigns</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-primary btn-large" href="/create-campaign">Create a campaign</a>
+              </p>
+            </div>
+             <div class="row cols4">
+                  <div class="span12">
+		    {% if campaigns %}
+                      <ul class="thumbnails">
+			{% for campaign in campaigns %}
+                        <li class="span3">
+                          <div class="thumbnail">
+                            <div class="pic">
+                              <a href="/campaign/{{ campaign.id  }}">
+				<img class="thumb" src="/media/{{ campaign.image }}" alt="">
+                              </a>
+                            </div>
+                            <h3>{{ campaign.name }}</h3>
+			    <p>{{ campaign.description|slice:":100" }}</p>
+			    <p><b>created by </b><a href="/profile/{{ campaign.creator }}">{{ campaign.creator }}</a></p>
+			    <p align="center">
+                              <a class="btn btn-primary btn-small" href="/campaign/{{ campaign.id  }}">more...</a>
+              		    </p>
+                          </div>
+                        </li>
+			{% endfor %}
+                      </ul>
+		      <p align="center">
+			<a class="btn btn-success btn-large" href="/campaigns">View all campaigns</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a class="btn btn-primary btn-large" href="/create-campaign">Create a campaign</a>
+		      </p>
+		      {% else %}
+		      <p align="center"> No campaigns have been created.</p>
+		      {% endif %}
+                  </div>
+              </div>
+        </div>
+    </div>
+
+    <!-- starts testimonial -->
+    <div id="testimonials">
+        <div class="container">
+            <div class="controls">
+                <hr>
+            </div>
+            <div class="phrases_wrapper">
+                <div class="phrase">
+                    <div class="row">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %} 

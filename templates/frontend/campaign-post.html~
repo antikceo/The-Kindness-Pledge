@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Add Campaign{% endblock %}
+
+{% block content %}
+<div id="blog_wrapper">
+  <div class="container">
+    <div class="row">
+      <h1 class="header">
+        Post to Campaign
+      </h1>
+      <div class = "span8">
+	<div class="tabbable tabs-below">
+	  <ul class="nav nav-tabs">
+	    <li class="active"><a data-toggle="tab" href="#A">Embed Video (Youtube Only)</a></li>
+	    <li class=""><a data-toggle="tab" href="#B">Post Photo</a></li>
+	    <li><a data-toggle="tab" href="#C">Post Story</a></li>
+	    <li><a data-toggle="tab" href="#D">Post Campaign Suggestion</a></li>
+	  </ul>
+	  <div class="tab-content">
+            <div id="A" class="tab-pane active">
+              <p>
+		<form>
+		  <input type="text" placeholder="Paste Youtube link here">
+                  <br/>
+                  <label> Enter Caption: </label>
+		  <textarea rows="6" cols="50" id="inputComment"></textarea>
+		  <br/>
+		  <input type="submit" class="btn" value="Post Video!">
+		</form>
+	      </p>
+            </div>
+            <div id="B" class="tab-pane">
+              <p>
+                <form>
+		  <label> Upload Image File: </label>
+                  <input type="file">
+                  <br/>
+                  <label> Enter Caption: </label>
+                  <textarea rows="6" cols="50" id="inputComment"></textarea>
+                  <br/>
+                  <input type="submit" class="btn" value="Post Image!">
+                </form>
+              </p>
+            </div>
+            <div id="C" class="tab-pane">
+              <p>
+                <form>
+                  <label> Enter Story Text: </label>
+                  <textarea rows="6" cols="50" id="inputComment"></textarea>
+                  <br/>
+                  <input type="submit" class="btn" value="Post Story!">
+                </form>
+              </p>
+            </div>
+            <div id="D" class="tab-pane">
+              <p>
+                <form>
+                  <label> Enter Suggestion Below: </label>
+                  <textarea rows="6" cols="50" id="inputComment"></textarea>
+                  <br/>
+                  <input type="submit" class="btn" value="Post Suggestion!">
+                </form>
+              </p>
+            </div>
+          </div>
+	</div>
+      </div>
+      
+      {% include "frontend/sidebar.html" %}
+
+    </div>
+  </div>
+</div>
+  
+{% endblock %} 

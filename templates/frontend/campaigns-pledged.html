@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ user }} - campaigns pledged{% endblock %}
+
+{% block content %}
+<div id="blog_wrapper">
+  <div class="container">
+    <div class="row">
+      <h1 class="header">
+        {{ user }} - campaigns pledged<hr>
+      </h1>
+      <div class = "span8">
+        <div class="row cols4">
+          <div class="span9">
+	    {% if campaigns  %}
+            <ul class="thumbnails">
+	      {% for campaign in campaigns %}
+              <li class="span3">
+                <div class="thumbnail">
+                  <div class="pic">
+                    <a href="/campaign/{{ campaign.campaign.id  }}">
+		      <img class="thumb" src="/media/{{ campaign.campaign.image }}" alt="">
+                    </a>
+                  </div>
+                  <h3>{{ campaign.campaign.name }}</h3>
+                  <p>{{ campaign.campaign.description|slice:":100"}}...</p>
+                  <p><b>created by </b><a href="/profile/{{ campaign.campaign.creator }}">{{ campaign.campaign.creator }}</a></p>
+		  <p align="center"><a class="btn btn-primary btn-small" href="/campaign/{{ campaign.campaign.id  }}">more</a></p>
+                </div>
+              </li>
+	      {% endfor %}
+            </ul>
+	    {% else %}
+	    <p> There are no campaigns <a class="btn btn-success btn-small" href="/create-campaign">Create Campaign</a> </p>
+	    {% endif %}
+	    <p align="right">
+              <span class="current">
+		Page {{ campaigns.number }} of {{ campaigns.paginator.num_pages }}.
+              </span>
+	    </p>
+	    <div class="pagination">
+	      <ul>
+		{% if campaigns.has_previous %}
+		<li><a href="?page={{ campaigns.previous_page_number }}">Prev</a></li>
+		{% endif %}		
+		{% for this in them %}
+		<li><a href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+		{% endfor %}
+		{% if campaigns.has_next %}
+		<li><a href="?page={{ campaigns.next_page_number }}">Next</a></li>
+		{% endif %}
+	      </ul>
+	    </div>
+
+          </div>
+        </div>
+      </div>
+      
+      {% ssi /home/bitnami/apps/django/django_projects/Project/templates/frontend/sidebar.html parsed  %}
+      
+    </div>
+  </div>
+</div>
+
+{% endblock %} 

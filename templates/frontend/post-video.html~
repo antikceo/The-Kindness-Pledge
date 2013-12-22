@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Post Video Response{% endblock %}
+
+{% block content %}
+<div id="blog_wrapper">
+  <div class="container">
+    <div class="row">
+    {% if errors %}
+    <br/><br/>
+    {% for error in errors %}
+    <div class="alert alert-error">
+      <button data-dismiss="alert" class="close" type="button">×</button>
+      {{ error }}
+    </div>
+    {% endfor %}
+    {% endif %}
+      <h1 class="header">
+        Post Video Response <hr>
+      </h1>
+      <div class = "span8">
+	<p align="center">
+	  Or do you want to &nbsp;&nbsp;
+	  <a href="../post-image" class="btn btn-primary default">Post Image</a> &nbsp;&nbsp;
+	  <a href="../post-text" class="btn btn-success default">Post Strory/External Link</a>&nbsp;&nbsp;
+	  <a href="../post-suggestion" class="btn btn-primary default">Post Suggestion</a>
+	</p><br>
+	<p>
+	  Please note that for the time-being we only accept youtube URL's
+	</p>
+	<form action="" enctype="multipart/form-data" class="form-horizontal" method="post">
+	  {% csrf_token %}
+          <div class="control-group">
+            <label class="control-label"><b>Title</b> (short title for this post)</label>
+            <div class="controls">
+              {{ form.title }}
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label"><b>Video Url</b> (Youtube ONLY)</label>
+            <div class="controls">
+              {{ form.content }}
+	      <p align="left"><i>Please post only youtube embed urls in the form "http://www.youtube.com/embed/<b>$video_id</b>"</i></p>
+	      <p align="left"><i>i.e. if the Youtube URL is "http://www.youtube.com/watch?v=0K43t0ynfGc", <br>the <b>$video_id</b> is 0K43t0ynfGc and the url you are expected to post is in the form <br>http://www.youtube.com/embed/0K43t0ynfGc</i></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label"><b>Caption</b></label>
+            <div class="controls">
+	      {{ form.caption }}
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls action"><br>
+              <button class="btn btn-success default" type="submit">Post Video</button>
+	      <br><p> Please ensure that all of the above are correct because all posts to this site are <b><i>final</i></b> </p>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      {% ssi /home/bitnami/apps/django/django_projects/Project/templates/frontend/sidebar.html parsed  %}
+      
+    </div>
+  </div>
+</div>
+  
+{% endblock %} 
